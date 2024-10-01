@@ -1,5 +1,5 @@
 {
-    "name": "vendornamehere/wp-plugin-name",
+    "name": "wp-vendorname-here/wp-plugin-name",
     "description": "This is a short description of what the plugin does.",
     "type": "wordpress-plugin",
     "autoload": {
@@ -17,10 +17,10 @@
         "lint-start": "phpcs --standard=phpcs.xml",
         "lint-fix": "phpcbf --standard=WordPress includes/",
         "makepot": "wp i18n make-pot . languages/wp-plugin-name.pot --exclude=node_modules,vendor,tests,_dist-release",
-        "build": [
-            "@pre-archive-cmd",
+        "build-wp-plugin-name": [
+            "@composer-no-dev-optimize",
             "bash -c 'rm -rf _dist-release/ && PLUGIN_NAME=$(basename $(pwd)) && mkdir -p _dist-release/$PLUGIN_NAME && rsync -av --exclude=\".*\" --exclude=\"phpcs.xml\" --exclude=\"_dist-release\" --exclude=\".gitignore\" --exclude=\"composer.lock\" --exclude=\"tests\" --exclude=\"node_modules\" ./ _dist-release/$PLUGIN_NAME && cd _dist-release && zip -r $PLUGIN_NAME.zip $PLUGIN_NAME'",
-            "@after-archive-cmd"
+            "@composer-install"
         ],
         "clean-all-folders": [
             "bash -c 'rm -rf _dist-release/'",
@@ -33,14 +33,14 @@
         "autoload": [
             "@composer dump-autoload"
         ],
-        "update-all": [
+        "composer-update": [
             "@composer update"
         ],
-        "pre-archive-cmd": [
+        "composer-no-dev-optimize": [
             "@composer install --no-dev --optimize-autoloader",
             "@composer dump-autoload -o"
         ],
-        "after-archive-cmd": [
+        "composer-install": [
             "@composer install"
         ]
     },

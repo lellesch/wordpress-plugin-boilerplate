@@ -42,6 +42,9 @@ fi
 
 replace_string "MyVendorNamespace" "${vendor_namespace_name}"
 
+lowercase_vendor_namespace_name=$(echo "$vendor_namespace_name" | tr '[:upper:]' '[:lower:]')
+
+replace_string "wp-vendorname-here" "${lowercase_vendor_namespace_name}"
 
 if [[ -z $namespace_name ]]; then
   namespace_name="MyPluginNamespace"
