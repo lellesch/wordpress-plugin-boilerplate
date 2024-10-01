@@ -34,3 +34,31 @@ The project contains a shell script (`replace.sh`) that replaces the placeholder
     - Plugin Domain: (Replace http://example.com)
 4.	The script will replace the placeholders in the files, rename the main plugin file, and adjust the plugin directory accordingly.
 5.	Once complete, your plugin’s directory and files will be correctly set up.
+
+## Creating a Release
+
+To package your plugin for distribution, you can use the `build-release` command. This command creates a ZIP archive of your plugin, excluding unnecessary files such as test directories and development dependencies.
+
+### Steps to create a release:
+
+1. Make sure that all necessary dependencies are installed by running:
+
+    ```bash
+    composer install
+    ```
+
+2. To create a release, simply run the following Composer script:
+
+    ```bash
+    composer run-script build-release
+    ```
+
+3. The script will:
+
+   - Remove any existing `_dist-release/` directory.
+   - Automatically determine the name of your plugin based on the current directory.
+   - Copy all plugin files into the `_dist-release/PLUGIN_NAME` directory, excluding unnecessary files such as `.git`, `node_modules`, `tests`, and development-related files like `.gitignore` and `composer.lock`.
+   - Navigate to the `_dist-release/` directory.
+   - Create a ZIP file named after your plugin, which contains all the relevant files for distribution.
+
+4. The resulting ZIP file can be found in the `_dist-release/` directory, ready for upload or distribution.
