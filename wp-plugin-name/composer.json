@@ -1,4 +1,7 @@
 {
+    "name": "vendornamehere/wp-plugin-name",
+    "description": "This is a short description of what the plugin does.",
+    "type": "wordpress-plugin",
     "autoload": {
         "psr-4": {
             "MyVendorNamespace\\MyPluginNamespace\\": "includes/"
@@ -21,7 +24,8 @@
         ],
         "clean-all-folders": [
             "bash -c 'rm -rf _dist-release/'",
-            "bash -c 'rm -rf vendor/'"
+            "bash -c 'rm -rf vendor/'",
+            "bash -c 'rm -rf composer.lock'"
         ],
         "clean-release": [
             "bash -c 'rm -rf _dist-release/'"
@@ -41,6 +45,7 @@
         ]
     },
     "config": {
+        "optimize-autoloader": true,
         "platform-check": "php-only",
         "sort-packages": true,
         "allow-plugins": {
