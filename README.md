@@ -1,14 +1,12 @@
 # WordPress Boilerplate Plugin PSR-4
 
-WordPress React Boilerplate is a boilerplate plugin for WordPress that enables a modern React integration and provides a clear structure for the separation of admin and frontend functions.
-
+WordPress Boilerplate is a boilerplate plugin for WordPress that provides a clear structure for the separation of admin and frontend functions, with support for modern PSR-4 autoloading and best practices in plugin development.
 ## Features
 
 - Separation of admin and frontend areas
 - React integration for admin and frontend components
 - psr 4 autoloading
 - Hook registration for admin and frontend
-- Shortcodes for the frontend areaet.
 
 ## Using the setup script:
 
