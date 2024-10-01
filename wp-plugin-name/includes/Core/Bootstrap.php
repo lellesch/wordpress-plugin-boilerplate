@@ -8,6 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use MyVendorNamespace\MyPluginNamespace\Admin\Admin;
+use MyVendorNamespace\MyPluginNamespace\Admin\Admin_App_Menu;
 use MyVendorNamespace\MyPluginNamespace\Admin\Admin_Settings;
 use MyVendorNamespace\MyPluginNamespace\Cron\Cron_Example;
 use MyVendorNamespace\MyPluginNamespace\Frontend\Frontend;
@@ -68,13 +69,18 @@ class Bootstrap {
 
 	private function define_admin_hooks(): void {
 
+		// Admin class.
 		$plugin_admin = Admin::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
 
-		$plugin_admin_settings = Admin_Settings::get_instance();
+		// Admin Settings.
+		Admin_Settings::get_instance();
 
+		// Standard Admin Scripts und Css.
 		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
-		add_action( 'admin_menu', array( $plugin_admin, 'add_plugin_admin_menu' ) );
+
+		// Add Admin menu Admin_App_Menu Class
+		Admin_App_Menu::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
 
 		// Additional hooks can be added here.
 	}
