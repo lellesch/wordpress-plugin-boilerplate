@@ -1,5 +1,5 @@
 <?php
-declare( strict_types = 1 );
+declare( strict_types=1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Traits;
 
@@ -14,13 +14,10 @@ trait Singleton_Guard {
 	 * Cloning a singleton is not allowed, so this method will trigger an appropriate error.
 	 *
 	 * @return void
+	 * @throws \Exception
 	 */
 	final public function __clone() {
-		_doing_it_wrong(
-			__FUNCTION__,
-			'Cloning a singleton is not allowed.',
-			WP_PLUGIN_VERSION
-		);
+		throw new \Exception( 'Cloning a singleton is not allowed.' );
 	}
 
 
@@ -30,12 +27,9 @@ trait Singleton_Guard {
 	 * This method prevents the unserialization of instances of this class.
 	 *
 	 * @return void
+	 * @throws \Exception
 	 */
 	final public function __wakeup() {
-		_doing_it_wrong(
-			__FUNCTION__,
-			'You cannot unserialize instances of this class.',
-			WP_PLUGIN_VERSION
-		);
+		throw new \Exception( 'You cannot unserialize instances of this class.' );
 	}
 }
