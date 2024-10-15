@@ -13,7 +13,7 @@ class Admin_Settings {
 	use Form_Guard;
 	use Singleton_Guard;
 
-	private static $instanz;
+	private static Admin_Settings $instance;
 
 	private string $plugin_prefix = 'wp_plugin_name_';
 
@@ -32,11 +32,11 @@ class Admin_Settings {
 	}
 
 	public static function get_instance(): Admin_Settings {
-		if ( ! isset( self::$instanz ) ) {
-			self::$instanz = new self();
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
-		return self::$instanz;
+		return self::$instance;
 	}
 
 	public function init(): void {
