@@ -42,6 +42,10 @@ class Frontend {
 
 
 	public function enqueue_styles(): void {
+		if ( is_admin() ) {
+			return;
+		}
+		
 		$style_path = WP_PLUGIN_DIR_URL . 'assets/css/frontend.css';
 
 		if ( file_exists( WP_PLUGIN_DIR_PATH . 'assets/css/frontend.css' ) ) {
@@ -51,6 +55,10 @@ class Frontend {
 
 
 	public function enqueue_scripts(): void {
+		if ( is_admin() ) {
+			return;
+		}
+
 		$script_path = WP_PLUGIN_DIR_URL . 'assets/js/frontend.js';
 
 		if ( file_exists( WP_PLUGIN_DIR_PATH . 'assets/js/frontend.js' ) ) {
