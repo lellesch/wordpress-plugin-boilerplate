@@ -54,7 +54,9 @@ class Frontend {
 		$script_path = WP_PLUGIN_DIR_URL . 'assets/js/frontend.js';
 
 		if ( file_exists( WP_PLUGIN_DIR_PATH . 'assets/js/frontend.js' ) ) {
-			wp_enqueue_script( $this->plugin_slug, $script_path, array( 'jquery' ), $this->plugin_version, false );
+			wp_enqueue_script( $this->plugin_slug, $script_path, array( 'jquery' ), $this->plugin_version, array(
+				'strategy' => 'defer',
+			) );
 		}
 	}
 }
