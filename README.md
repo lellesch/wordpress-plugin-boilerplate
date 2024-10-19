@@ -1,4 +1,4 @@
-# WordPress Boilerplate Plugin PSR-4
+# WordPress Boilerplate Plugin
 
 WordPress Boilerplate is a boilerplate plugin for WordPress that provides a clear structure for the separation of admin and frontend functions, with support for modern PSR-4 autoloading and best practices in plugin development.
 ## Features
