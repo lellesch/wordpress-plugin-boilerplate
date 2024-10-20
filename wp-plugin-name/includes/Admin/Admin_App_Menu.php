@@ -19,7 +19,7 @@ class Admin_App_Menu {
 
 	private string $plugin_version;
 
-	private function __construct(string $plugin_slug, string $plugin_prefix, string $plugin_version) {
+	private function __construct( string $plugin_slug, string $plugin_prefix, string $plugin_version ) {
 		$this->plugin_slug    = $plugin_slug;
 		$this->plugin_prefix  = $plugin_prefix;
 		$this->plugin_version = $plugin_version;
@@ -27,8 +27,8 @@ class Admin_App_Menu {
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 	}
 
-	public static function get_instance(string $plugin_slug, string $plugin_prefix, string $plugin_version): Admin_App_Menu {
-		if (!isset(self::$instance)) {
+	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): Admin_App_Menu {
+		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
 		}
 
@@ -97,5 +97,4 @@ class Admin_App_Menu {
 		$plugin_admin_settings_instance = Admin_Settings::get_instance();
 		$plugin_admin_settings_instance->display_settings_page();
 	}
-
 }

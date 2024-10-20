@@ -24,7 +24,7 @@ class Admin_Notice {
 	 *
 	 * @param string $notice The notice message to add. Default is an empty string.
 	 * @param string $type The type of the notice (e.g., 'success', 'error'). Default is 'success'.
-	 * @param bool $dismissible Indicates whether the notice is dismissible. Default is true.
+	 * @param bool   $dismissible Indicates whether the notice is dismissible. Default is true.
 	 *
 	 * @return void
 	 */

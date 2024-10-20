@@ -85,7 +85,7 @@ class Admin_Settings {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$test_checkbox_feld_name = isset( $_POST['test_checkbox_feld_name'] ) ? 1 : 0;
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing
-        $test_text_feld_name     = isset( $_POST['test_text_feld_name'] ) ? sanitize_text_field( wp_unslash( $_POST['test_text_feld_name'] ) ) : '';
+		$test_text_feld_name = isset( $_POST['test_text_feld_name'] ) ? sanitize_text_field( wp_unslash( $_POST['test_text_feld_name'] ) ) : '';
 
 		$options['test_checkbox_feld_name'] = $test_checkbox_feld_name;
 		$options['test_text_feld_name']     = $test_text_feld_name;

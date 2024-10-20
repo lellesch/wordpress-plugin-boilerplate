@@ -42,7 +42,7 @@ define( 'WP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  * Include the Composer autoload file if it exists.
  */
 if ( file_exists( WP_PLUGIN_DIR_PATH . 'vendor/autoload.php' ) ) {
-	require( WP_PLUGIN_DIR_PATH . 'vendor/autoload.php' );
+	require WP_PLUGIN_DIR_PATH . 'vendor/autoload.php';
 } else {
 	wp_die( 'Composer autoload file not found: ' . esc_attr( WP_PLUGIN_DIR_PATH ) . 'vendor/autoload.php' );
 }

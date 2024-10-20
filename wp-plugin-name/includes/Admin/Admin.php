@@ -53,5 +53,4 @@ class Admin {
 			wp_enqueue_script( $this->plugin_slug, $script_path, array( 'jquery' ), $this->plugin_version, false );
 		}
 	}
-
 }
