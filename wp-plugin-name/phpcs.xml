@@ -15,6 +15,9 @@
     <exclude-pattern>*.js</exclude-pattern>
     <exclude-pattern>*.css</exclude-pattern>
 
+    <rule ref="WordPress.DB" />
+    <rule ref="WordPress.Security" />
+
     <!-- Verwende den WordPress-Standard, aber schließe einige Regeln aus -->
     <rule ref="WordPress-Core">
         <!--<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>-->
