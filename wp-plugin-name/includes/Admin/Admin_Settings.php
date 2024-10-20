@@ -69,15 +69,10 @@ class Admin_Settings {
 	 * updates the specified options, saves them,
 	 * and redirects to the settings page with an appropriate notice.
 	 *
-	 * @return void
+	 * @return never
 	 */
-	public function post_settings_form(): void {
+	public function post_settings_form(): never {
 		status_header( 200 );
-
-		// Verwende die Methode aus dem Trait für die Action-Überprüfung.
-		if ( ! $this->is_form_action_valid() ) {
-			return;
-		}
 
 		// Sicherheitsüberprüfung mit wp_die bei Fehler.
 		if ( ! $this->is_security_check_valid() ) {
@@ -87,8 +82,10 @@ class Admin_Settings {
 		$options = $this->get_option_settings();
 
 		// Sanitize und verarbeite die übergebenen Formulardaten.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		$test_checkbox_feld_name = isset( $_POST['test_checkbox_feld_name'] ) ? 1 : 0;
-		$test_text_feld_name     = isset( $_POST['test_text_feld_name'] ) ? sanitize_text_field( wp_unslash( $_POST['test_text_feld_name'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing
+        $test_text_feld_name     = isset( $_POST['test_text_feld_name'] ) ? sanitize_text_field( wp_unslash( $_POST['test_text_feld_name'] ) ) : '';
 
 		$options['test_checkbox_feld_name'] = $test_checkbox_feld_name;
 		$options['test_text_feld_name']     = $test_text_feld_name;
