@@ -13,7 +13,7 @@
  * Version:           1.0.0
  * Author:            Your Name or Your Company
  * Requires at least: 6.5
- * Tested up to:      6.6
+ * Tested up to:      6.7
  * Requires PHP:      8.1
  * Author URI:        http://example.com
  * Text Domain:       wp-plugin-name
