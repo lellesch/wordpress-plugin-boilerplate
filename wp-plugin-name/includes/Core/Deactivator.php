@@ -3,6 +3,8 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Core;
 
+use MyVendorNamespace\MyPluginNamespace\Cron\Cron_Example;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -26,5 +28,7 @@ class Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate(): void {}
+	public static function deactivate(): void {
+		Cron_Example::get_instance()->deactivate_cron();
+	}
 }

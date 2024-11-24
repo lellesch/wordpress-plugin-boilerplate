@@ -70,7 +70,6 @@ class Activator {
 		 * Perform your activation actions here.
 		 */
 
-		Cron_Example::get_instance()->activate_cron();
 	}
 
 	/**
