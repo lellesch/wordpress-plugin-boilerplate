@@ -3,7 +3,7 @@ Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://example.com/
 Tags: tag1, tag2
 Requires at least: 4.7
-Tested up to: 6.6
+Tested up to: 6.7
 Stable tag: 1.0.0
 Requires PHP: 8.1
 License: GPLv2 or later
