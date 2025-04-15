@@ -60,7 +60,7 @@ class Bootstrap {
 
 	public function load_plugin_textdomain(): void {
 		load_plugin_textdomain(
-			'wp-plugin-name',
+			$this->plugin_slug,
 			false,
 			plugin_basename( dirname( __DIR__, 2 ) ) . '/languages'
 		);
