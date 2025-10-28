@@ -7,11 +7,11 @@ use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
 
 defined( 'ABSPATH' ) || exit;
 
-class Admin_App_Menu {
+final class Admin_App_Menu {
 
 	use Singleton_Guard;
 
-	private static Admin_App_Menu $instance;
+	private static ?Admin_App_Menu $instance = null;
 
 	private string $plugin_slug;
 
@@ -28,12 +28,23 @@ class Admin_App_Menu {
 	}
 
 	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): Admin_App_Menu {
-		if ( ! isset( self::$instance ) ) {
+		if ( null === self::$instance ) {
 			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
 		}
 
 		return self::$instance;
 	}
+
+	private function ensure_permission(): void {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die(
+				esc_html__( 'Du hast keine Berechtigung, auf diese Seite zuzugreifen.', $this->textdomain ),
+				esc_html__( 'Zugriff verweigert', 'wp-plugin-name' ),
+				[ 'response' => 403 ]
+			);
+		}
+	}
+
 
 	public function add_plugin_admin_menu(): void {
 
@@ -77,18 +88,26 @@ class Admin_App_Menu {
 
 
 	public function render_menu_dashboard_page(): void {
+
+		$this->ensure_permission();
+
 		echo '<div class="wrap">';
 		echo '<h1>' . esc_html__( 'Dashboard Seite', 'wp-plugin-name' ) . '</h1>';
 		echo '</div>';
 	}
 
 	public function render_menu_page_one(): void {
+
+		$this->ensure_permission();
+
 		echo '<div class="wrap">';
 		echo '<h1>' . esc_html__( 'Menü 1 Seite Beispiel', 'wp-plugin-name' ) . '</h1>';
 		echo '</div>';
 	}
 
 	public function render_menu_settings_page(): void {
+
+		$this->ensure_permission();
 		/*
 		echo '<div class="wrap">';
 		echo '<h1>' . esc_html__( 'Einstellungen Seite Beispiel', 'wp-plugin-name' ) . '</h1>';
