@@ -7,6 +7,9 @@
             "MyVendorNamespace\\MyPluginNamespace\\": "includes/"
         }
     },
+    "require": {
+    "php": ">=8.3"
+    },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^v1.1.2",
         "wp-coding-standards/wpcs": "^3.2.0",
