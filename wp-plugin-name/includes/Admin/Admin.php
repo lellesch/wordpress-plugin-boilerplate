@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class Admin {
+final class Admin {
 
 	use Singleton_Guard;
 
