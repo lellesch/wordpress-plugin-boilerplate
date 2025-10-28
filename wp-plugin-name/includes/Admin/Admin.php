@@ -22,7 +22,7 @@ class Admin {
 
 	private string $plugin_version;
 
-	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): ?Admin {
+	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): Admin {
 		if ( null === self::$instance ) {
 			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
 		}
