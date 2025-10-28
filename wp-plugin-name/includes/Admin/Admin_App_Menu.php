@@ -40,7 +40,7 @@ final class Admin_App_Menu {
 			wp_die(
 				esc_html__( 'Du hast keine Berechtigung, auf diese Seite zuzugreifen.', 'wp-plugin-name' ),
 				esc_html__( 'Zugriff verweigert', 'wp-plugin-name' ),
-				[ 'response' => 403 ]
+				array( 'response' => 403 )
 			);
 		}
 	}

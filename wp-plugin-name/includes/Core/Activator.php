@@ -69,7 +69,6 @@ class Activator {
 		 * The plugin is now safely activated.
 		 * Perform your activation actions here.
 		 */
-
 	}
 
 	/**

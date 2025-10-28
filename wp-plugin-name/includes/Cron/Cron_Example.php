@@ -18,7 +18,7 @@ class Cron_Example {
 	private static ?Cron_Example $instance = null;
 
 	private function __construct() {
-		add_action( 'wp', [ $this, 'activate_cron' ] );
+		add_action( 'wp', array( $this, 'activate_cron' ) );
 		add_action( self::PREFIX_NAME . 'cron_job_hook', array( $this, 'cron_job_hook' ) );
 	}
 

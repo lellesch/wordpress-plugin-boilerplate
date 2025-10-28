@@ -8,15 +8,15 @@ defined( 'ABSPATH' ) || exit;
 final class Admin_Notice {
 	private const string OPTION_KEY = WP_PLUGIN_PREFIX . 'notices';
 	/** @var string[] */
-	private const array ALLOWED_TYPES = [ 'success', 'error', 'warning', 'info' ];
+	private const array ALLOWED_TYPES = array( 'success', 'error', 'warning', 'info' );
 
 	public static function init(): void {
 		// Option einmalig ohne Autoload anlegen
 		if ( false === get_option( self::OPTION_KEY, false ) ) {
-			add_option( self::OPTION_KEY, [], '', 'no' );
+			add_option( self::OPTION_KEY, array(), '', 'no' );
 		}
 
-		add_action( 'admin_notices', [ __CLASS__, 'display_notices' ], 12 );
+		add_action( 'admin_notices', array( __CLASS__, 'display_notices' ), 12 );
 	}
 
 	/**
@@ -25,13 +25,13 @@ final class Admin_Notice {
 	public static function add_notice( string $message, string $type = 'success', bool $dismissible = true ): void {
 		$type = in_array( $type, self::ALLOWED_TYPES, true ) ? $type : 'success';
 
-		$notices   = get_option( self::OPTION_KEY, [] );
-		$notices[] = [
+		$notices   = get_option( self::OPTION_KEY, array() );
+		$notices[] = array(
 			// keine harte Sanitization hier – erst beim Output escapen!
 			'message'     => $message,
 			'type'        => $type,
 			'dismissible' => $dismissible,
-		];
+		);
 
 		update_option( self::OPTION_KEY, $notices, 'no' ); // autoload=no beibehalten
 	}
@@ -40,7 +40,7 @@ final class Admin_Notice {
 	 * Rendert alle Notices und leert danach die Option.
 	 */
 	public static function display_notices(): void {
-		$notices = get_option( self::OPTION_KEY, [] );
+		$notices = get_option( self::OPTION_KEY, array() );
 		if ( empty( $notices ) ) {
 			return;
 		}
@@ -51,7 +51,7 @@ final class Admin_Notice {
 
 		delete_option( self::OPTION_KEY );
 		// Optional: wieder anlegen ohne Autoload
-		add_option( self::OPTION_KEY, [], '', 'no' );
+		add_option( self::OPTION_KEY, array(), '', 'no' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ final class Admin_Notice {
 		$type        = isset( $notice['type'] ) ? (string) $notice['type'] : 'success';
 		$dismissible = ! empty( $notice['dismissible'] );
 
-		$classes = [ 'notice', 'notice-' . $type ];
+		$classes = array( 'notice', 'notice-' . $type );
 		if ( $dismissible ) {
 			$classes[] = 'is-dismissible';
 		}
