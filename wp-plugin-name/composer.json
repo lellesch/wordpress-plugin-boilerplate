@@ -17,7 +17,7 @@
         "lint-start": "phpcs --standard=phpcs.xml",
         "lint-fix": "phpcbf --standard=WordPress includes/",
         "makepot": "wp i18n make-pot . languages/wp-plugin-name.pot --exclude=node_modules,vendor,tests,_dist-release",
-        "build-realease": [
+        "build-release": [
             "@composer-no-dev-optimize",
             "bash -c 'rm -rf _dist-release/ && PLUGIN_NAME=$(basename $(pwd)) && mkdir -p _dist-release/$PLUGIN_NAME && rsync -av --exclude=\".*\" --exclude=\"phpcs.xml\" --exclude=\"_dist-release\" --exclude=\".gitignore\" --exclude=\"composer.lock\" --exclude=\"tests\" --exclude=\"node_modules\" ./ _dist-release/$PLUGIN_NAME && cd _dist-release && zip -r $PLUGIN_NAME.zip $PLUGIN_NAME'",
             "@composer-install"
