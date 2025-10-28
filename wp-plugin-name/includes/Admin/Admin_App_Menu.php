@@ -38,7 +38,7 @@ final class Admin_App_Menu {
 	private function ensure_permission(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die(
-				esc_html__( 'Du hast keine Berechtigung, auf diese Seite zuzugreifen.', $this->textdomain ),
+				esc_html__( 'Du hast keine Berechtigung, auf diese Seite zuzugreifen.', 'wp-plugin-name' ),
 				esc_html__( 'Zugriff verweigert', 'wp-plugin-name' ),
 				[ 'response' => 403 ]
 			);
