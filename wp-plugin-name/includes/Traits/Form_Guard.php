@@ -10,6 +10,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 trait Form_Guard {
 
 	/**
+	 * The action name used for the form and nonce validation.
+	 *
+	 * @var string
+	 */
+	protected string $form_action_name;
+
+	/**
+	 * The capability required to submit the form.
+	 *
+	 * @var string
+	 */
+	protected string $required_capability = 'manage_options';
+
+	/**
+	 * The nonce field name.
+	 *
+	 * @var string
+	 */
+	protected string $nonce_field_name = '_wpnonce';
+
+	/**
 	 * Validates the security check by verifying the presence of required POST parameters,
 	 * user capabilities, and nonce consistency.
 	 *
@@ -17,18 +38,29 @@ trait Form_Guard {
 	 */
 	private function is_security_check_valid(): bool {
 
-		if ( ! isset( $_POST['action'] ) || ! isset( $_POST['_wpnonce'] ) || ! current_user_can( 'manage_options' ) ) {
+		// Check if required POST parameters are present.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is checked below
+		if ( ! isset( $_POST['action'] ) || ! isset( $_POST[ $this->nonce_field_name ] ) ) {
 			return false;
 		}
 
-		$required_action = sanitize_text_field( $this->form_action_name );
+		// Check user capability.
+		if ( ! current_user_can( $this->required_capability ) ) {
+			return false;
+		}
+
+		// Verify action matches (no sanitization needed for internal property).
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is checked below
 		$received_action = sanitize_text_field( wp_unslash( $_POST['action'] ) );
 
-		if ( $received_action !== $required_action ) {
+		if ( $received_action !== $this->form_action_name ) {
 			return false;
 		}
 
-		check_admin_referer( $this->form_action_name );
+		// Verify nonce - this will wp_die() if invalid, but we check the return value anyway.
+		if ( ! check_admin_referer( $this->form_action_name, $this->nonce_field_name ) ) {
+			return false;
+		}
 
 		return true;
 	}
