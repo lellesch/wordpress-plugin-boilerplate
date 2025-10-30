@@ -78,16 +78,14 @@ class Bootstrap {
 
 	private function define_public_hooks(): void {
 
-		$plugin_public = Frontend::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
+		$frontend = Frontend::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
+		$frontend->init();
 
 		// Rest Example.
 		Example_Rest_API::get_instance();
 
 		// Cron Example.
 		Cron_Example::get_instance();
-
-		add_action( 'wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $plugin_public, 'enqueue_scripts' ) );
 	}
 
 
