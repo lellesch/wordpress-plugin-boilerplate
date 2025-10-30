@@ -5,15 +5,14 @@ namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
 use MyVendorNamespace\MyPluginNamespace\Traits\Form_Guard;
 use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 defined( 'ABSPATH' ) || exit;
 
 final class Admin_Settings {
 
 	use Form_Guard;
-	use Singleton_Guard;
-
-	private static ?Admin_Settings $instance = null;
+    use Singleton_Instance;
 
 	private string $plugin_prefix = 'wp_plugin_name_';
 
@@ -29,14 +28,6 @@ final class Admin_Settings {
 	private function __construct() {
 		$this->form_action_name = $this->plugin_prefix . 'post_settings_form';
 		$this->init();
-	}
-
-	public static function get_instance(): Admin_Settings {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	public function init(): void {
