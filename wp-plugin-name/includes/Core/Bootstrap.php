@@ -13,6 +13,7 @@ use MyVendorNamespace\MyPluginNamespace\Admin\Admin_Settings;
 use MyVendorNamespace\MyPluginNamespace\Cron\Cron_Example;
 use MyVendorNamespace\MyPluginNamespace\Frontend\Frontend;
 use MyVendorNamespace\MyPluginNamespace\Rest\Example_Rest_API;
+use MyVendorNamespace\MyPluginNamespace\Shortcodes\Shortcode_Manager;
 use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 final class Bootstrap {
@@ -81,6 +82,10 @@ final class Bootstrap {
 
 		$frontend = Frontend::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
 		$frontend->init();
+
+		// Shortcodes.
+		$shortcodes = Shortcode_Manager::get_instance( $this->get_plugin_prefix() );
+		$shortcodes->init();
 
 		// Rest Example.
 		$rest = Example_Rest_API::get_instance();
