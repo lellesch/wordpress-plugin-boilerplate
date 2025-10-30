@@ -18,7 +18,7 @@ final class Admin_Settings {
 
 	private string $options_name = 'wp_plugin_name_settings';
 
-	private string $form_action_name;
+	protected string $form_action_name;
 
 	private array $default_options = array(
 		'test_text_feld_name'     => '',
