@@ -26,6 +26,11 @@ final class Admin {
 		$this->plugin_version = $plugin_version;
 	}
 
+	public function init(): void {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
 
 	public function enqueue_styles(): void {
 		$style_path = WP_PLUGIN_DIR_URL . 'assets/css/admin.css';

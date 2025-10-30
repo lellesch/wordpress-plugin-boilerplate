@@ -15,9 +15,10 @@ use MyVendorNamespace\MyPluginNamespace\Frontend\Frontend;
 use MyVendorNamespace\MyPluginNamespace\Rest\Example_Rest_API;
 use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
-class Bootstrap {
+final class Bootstrap {
 
 	use Singleton_Instance;
+
 	protected string $plugin_basename;
 	protected string $plugin_version;
 	protected string $plugin_slug;
@@ -61,16 +62,16 @@ class Bootstrap {
 
 		// Admin class.
 		$plugin_admin = Admin::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
+		$plugin_admin->init();
 
 		// Admin Settings.
-		Admin_Settings::get_instance();
-
-		// Standard Admin Scripts und Css.
-		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+		$admin_settings = Admin_Settings::get_instance();
+		$admin_settings->init();
 
 		// Add Admin menu Admin_App_Menu Class
-		Admin_App_Menu::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
+		$admin_app_menu = Admin_App_Menu::get_instance( $this->get_plugin_slug(), $this->get_plugin_prefix(), $this->get_plugin_version() );
+		$admin_app_menu->init();
+
 
 		// Additional hooks can be added here.
 	}
@@ -82,10 +83,12 @@ class Bootstrap {
 		$frontend->init();
 
 		// Rest Example.
-		Example_Rest_API::get_instance();
+		$rest = Example_Rest_API::get_instance();
+		$rest->init();
 
 		// Cron Example.
-		Cron_Example::get_instance();
+		$cron = Cron_Example::get_instance();
+		$cron->init();
 	}
 
 

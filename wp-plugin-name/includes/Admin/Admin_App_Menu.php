@@ -21,7 +21,9 @@ final class Admin_App_Menu {
 		$this->plugin_slug    = $plugin_slug;
 		$this->plugin_prefix  = $plugin_prefix;
 		$this->plugin_version = $plugin_version;
+	}
 
+	public function init(): void {
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
 	}
 

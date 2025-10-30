@@ -38,13 +38,20 @@ define( 'WP_PLUGIN_DIR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WP_PLUGIN_DIR_URL', plugin_dir_url( __FILE__ ) );
 define( 'WP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
-/**
- * Include the Composer autoload file if it exists.
- */
+
 if ( file_exists( WP_PLUGIN_DIR_PATH . 'vendor/autoload.php' ) ) {
 	require WP_PLUGIN_DIR_PATH . 'vendor/autoload.php';
 } else {
-	wp_die( 'Composer autoload file not found: ' . esc_attr( WP_PLUGIN_DIR_PATH ) . 'vendor/autoload.php' );
+	if ( current_user_can( 'manage_options' ) ) {
+		add_action( 'admin_notices', function () {
+			echo '<div class="notice notice-error"><p>';
+			echo esc_html__( 'Der Composer-Autoloader wurde nicht gefunden. Bitte führe im Plugin-Verzeichnis den Befehl "composer install" aus.', 'wp-plugin-name' );
+			echo '</p></div>';
+		} );
+	}
+
+	// Abbrechen, um Fehler zu vermeiden.
+	return;
 }
 
 /**

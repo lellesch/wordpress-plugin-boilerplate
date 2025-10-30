@@ -26,7 +26,6 @@ final class Admin_Settings {
 
 	protected function __construct() {
 		$this->form_action_name = $this->plugin_prefix . 'post_settings_form';
-		$this->init();
 	}
 
 	public function init(): void {

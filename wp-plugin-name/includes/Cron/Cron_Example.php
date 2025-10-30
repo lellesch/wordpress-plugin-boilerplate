@@ -16,7 +16,7 @@ class Cron_Example {
 
 	const PREFIX_NAME                      = WP_PLUGIN_PREFIX;
 
-	private function __construct() {
+	public function init(): void {
 		add_action( 'wp', array( $this, 'activate_cron' ) );
 		add_action( self::PREFIX_NAME . 'cron_job_hook', array( $this, 'cron_job_hook' ) );
 	}

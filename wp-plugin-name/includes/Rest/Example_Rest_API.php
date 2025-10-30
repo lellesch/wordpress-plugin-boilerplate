@@ -18,7 +18,7 @@ class Example_Rest_API {
 	protected string $namespace     = 'wp-plugin-name/v1';
 	protected string $resource_name = 'example';
 
-	private function __construct() {
+	public function init(): void {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
