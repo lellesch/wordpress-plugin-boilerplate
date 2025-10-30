@@ -32,4 +32,14 @@ trait Singleton_Guard {
 	final public function __wakeup() {
 		throw new \Exception( 'You cannot unserialize instances of this class.' );
 	}
+
+	/**
+	 * Verhindert das Serialisieren der Singleton-Instanz.
+	 *
+	 * @return array
+	 * @throws \LogicException
+	 */
+	final public function __serialize(): array {
+		throw new \LogicException( 'Serializing a singleton is not allowed.' );
+	}
 }
