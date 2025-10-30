@@ -13,25 +13,15 @@ use MyVendorNamespace\MyPluginNamespace\Admin\Admin_Settings;
 use MyVendorNamespace\MyPluginNamespace\Cron\Cron_Example;
 use MyVendorNamespace\MyPluginNamespace\Frontend\Frontend;
 use MyVendorNamespace\MyPluginNamespace\Rest\Example_Rest_API;
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 class Bootstrap {
 
-	use Singleton_Guard;
-
-	private static ?Bootstrap $instance = null;
+	use Singleton_Instance;
 	protected string $plugin_basename;
 	protected string $plugin_version;
 	protected string $plugin_slug;
 	protected string $plugin_prefix;
-
-	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version, string $plugin_basename ): Bootstrap {
-		if ( null === self::$instance ) {
-			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version, $plugin_basename );
-		}
-
-		return self::$instance;
-	}
 
 
 	private function __construct( string $plugin_slug, string $plugin_prefix, string $plugin_version, string $plugin_basename ) {

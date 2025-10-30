@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MyVendorNamespace\MyPluginNamespace\Cron;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,22 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Cron_Example {
 
-	use Singleton_Guard;
+	use Singleton_Instance;
 
 	const PREFIX_NAME                      = WP_PLUGIN_PREFIX;
-	private static ?Cron_Example $instance = null;
 
 	private function __construct() {
 		add_action( 'wp', array( $this, 'activate_cron' ) );
 		add_action( self::PREFIX_NAME . 'cron_job_hook', array( $this, 'cron_job_hook' ) );
-	}
-
-	public static function get_instance(): ?Cron_Example {
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	/**

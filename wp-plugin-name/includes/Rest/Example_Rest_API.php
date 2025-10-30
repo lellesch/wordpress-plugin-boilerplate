@@ -3,7 +3,7 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Rest;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 use WP_REST_Response;
 use WP_REST_Server;
 
@@ -13,20 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Example_Rest_API {
 
-	use Singleton_Guard;
-
-	private static ?Example_Rest_API $instance = null;
+	use Singleton_Instance;
 
 	protected string $namespace     = 'wp-plugin-name/v1';
 	protected string $resource_name = 'example';
-
-	public static function get_instance(): self {
-		if ( null === self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
 
 	private function __construct() {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );

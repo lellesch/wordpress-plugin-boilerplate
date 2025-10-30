@@ -4,7 +4,6 @@ declare( strict_types = 1 );
 namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
 use MyVendorNamespace\MyPluginNamespace\Traits\Form_Guard;
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
 use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +24,7 @@ final class Admin_Settings {
 		'test_checkbox_feld_name' => 0,
 	);
 
-	private function __construct() {
+	protected function __construct() {
 		$this->form_action_name = $this->plugin_prefix . 'post_settings_form';
 		$this->init();
 	}

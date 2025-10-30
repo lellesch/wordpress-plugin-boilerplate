@@ -3,15 +3,13 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 defined( 'ABSPATH' ) || exit;
 
 final class Admin_App_Menu {
 
-	use Singleton_Guard;
-
-	private static ?Admin_App_Menu $instance = null;
+	use Singleton_Instance;
 
 	private string $plugin_slug;
 
@@ -25,14 +23,6 @@ final class Admin_App_Menu {
 		$this->plugin_version = $plugin_version;
 
 		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
-	}
-
-	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): Admin_App_Menu {
-		if ( null === self::$instance ) {
-			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
-		}
-
-		return self::$instance;
 	}
 
 	private function ensure_permission(): void {

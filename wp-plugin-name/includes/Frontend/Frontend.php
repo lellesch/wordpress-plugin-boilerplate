@@ -2,18 +2,16 @@
 
 namespace MyVendorNamespace\MyPluginNamespace\Frontend;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 
-class Frontend {
+final class Frontend {
 
-	use Singleton_Guard;
-
-	private static ?Frontend $instance = null;
+	use Singleton_Instance;
 
 
 	private string $plugin_slug;
@@ -23,15 +21,6 @@ class Frontend {
 
 
 	private string $plugin_version;
-
-
-	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): ?Frontend {
-		if ( null === self::$instance ) {
-			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
-		}
-
-		return self::$instance;
-	}
 
 
 	private function __construct( string $plugin_slug, string $plugin_prefix, string $plugin_version ) {

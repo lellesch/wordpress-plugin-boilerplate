@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Guard;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,23 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 final class Admin {
 
-	use Singleton_Guard;
-
-	private static ?Admin $instance = null;
+	use Singleton_Instance;
 
 	private string $plugin_slug;
 
 	private string $plugin_prefix;
 
 	private string $plugin_version;
-
-	public static function get_instance( string $plugin_slug, string $plugin_prefix, string $plugin_version ): Admin {
-		if ( null === self::$instance ) {
-			self::$instance = new self( $plugin_slug, $plugin_prefix, $plugin_version );
-		}
-
-		return self::$instance;
-	}
 
 	private function __construct( string $plugin_slug, string $plugin_prefix, string $plugin_version ) {
 		$this->plugin_slug    = $plugin_slug;
