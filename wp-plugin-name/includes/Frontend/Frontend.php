@@ -29,6 +29,14 @@ final class Frontend {
 		$this->plugin_version = $plugin_version;
 	}
 
+	/**
+	 * Registriert die Hooks für Frontend-Assets.
+	 */
+	public function init(): void {
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
 
 	public function enqueue_styles(): void {
 		if ( is_admin() ) {
