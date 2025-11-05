@@ -3,13 +3,13 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 
 defined( 'ABSPATH' ) || exit;
 
 final class Admin_App_Menu {
 
-	use Singleton_Instance;
+	use Singleton_Instance_Trait;
 
 	private string $plugin_slug;
 

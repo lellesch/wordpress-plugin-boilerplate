@@ -3,15 +3,15 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Admin;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Form_Guard;
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Form_Guard_Trait;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 
 defined( 'ABSPATH' ) || exit;
 
 final class Admin_Settings {
 
-	use Form_Guard;
-    use Singleton_Instance;
+	use Form_Guard_Trait;
+    use Singleton_Instance_Trait;
 
 	private string $plugin_prefix = 'wp_plugin_name_';
 

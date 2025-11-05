@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-trait Singleton_Instance {
+trait Singleton_Instance_Trait {
 	/**
 	 * Registry für alle Klassen, die diesen Trait nutzen.
 	 *

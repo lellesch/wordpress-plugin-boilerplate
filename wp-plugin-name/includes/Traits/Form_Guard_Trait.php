@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-trait Form_Guard {
+trait Form_Guard_Trait {
 
 	/**
 	 * The action name used for the form and nonce validation.

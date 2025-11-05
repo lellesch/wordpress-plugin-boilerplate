@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MyVendorNamespace\MyPluginNamespace\Cron;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Cron_Example {
 
-	use Singleton_Instance;
+	use Singleton_Instance_Trait;
 
 	const PREFIX_NAME                      = WP_PLUGIN_PREFIX;
 

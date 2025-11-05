@@ -14,11 +14,11 @@ use MyVendorNamespace\MyPluginNamespace\Cron\Cron_Example;
 use MyVendorNamespace\MyPluginNamespace\Frontend\Frontend;
 use MyVendorNamespace\MyPluginNamespace\Rest\Example_Rest_API;
 use MyVendorNamespace\MyPluginNamespace\Shortcodes\Shortcode_Manager;
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 
 final class Bootstrap {
 
-	use Singleton_Instance;
+	use Singleton_Instance_Trait;
 
 	protected string $plugin_basename;
 	protected string $plugin_version;

@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Shortcodes;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class Shortcode_Manager {
 
-	use Singleton_Instance;
+	use Singleton_Instance_Trait;
 
 	private string $plugin_prefix;
 
