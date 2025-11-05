@@ -3,7 +3,7 @@ declare( strict_types = 1 );
 
 namespace MyVendorNamespace\MyPluginNamespace\Rest;
 
-use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance;
+use MyVendorNamespace\MyPluginNamespace\Traits\Singleton_Instance_Trait;
 use WP_REST_Response;
 use WP_REST_Server;
 
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Example_Rest_API {
 
-	use Singleton_Instance;
+	use Singleton_Instance_Trait;
 
 	protected string $namespace     = 'wp-plugin-name/v1';
 	protected string $resource_name = 'example';
